@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{%block title %}Login{% endblock %}
+{% block content %}
+<div class="form">
+    <form class="login-form" method="POST" action="">
+        {% csrf_token %}
+        <h1 class="main-heading">Admin Login</h1>
+        <input type="text" placeholder="Username" name="username" required/>
+        <input type="password" placeholder="Password" name="password" required/>
+        <div class="alertbox">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alerts {% if message.tags == 'success'%}alert-green{% else%}alert-red{% endif %}">{{message}}</div>
+                {% endfor %}
+            {% else %}
+                <div class="alerts alert-blank">blank</div>
+            {% endif %}
+        </div>
+        <button type="submit">login</button>
+        <p class="message"><a href="{% url 'login' %}">User Login</a></p>
+    </form>
+</div>
+{% endblock %}
